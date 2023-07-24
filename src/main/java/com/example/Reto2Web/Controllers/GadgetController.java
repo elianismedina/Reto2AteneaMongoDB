@@ -3,6 +3,7 @@ package com.example.Reto2Web.Controllers;
 import com.example.Reto2Web.Model.Gadget;
 import com.example.Reto2Web.Services.GadgetServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,16 +56,19 @@ public class GadgetController {
     }
 
     @PostMapping("/new")
+    @ResponseStatus(HttpStatus.CREATED)
     public Gadget insertGadget(@RequestBody Gadget gadget){
         return gadgetServices.insertGadget(gadget);
     }
 
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public Gadget updateGadget(@RequestBody Gadget gadget){
         return gadgetServices.updateGadget(gadget);
     }
 
     @DeleteMapping("/{gadgetId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteGadget(@PathVariable("gadgetId") Integer gadgetId){
         gadgetServices.deleteGadget(gadgetId);
     }
